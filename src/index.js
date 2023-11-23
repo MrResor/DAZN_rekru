@@ -44,7 +44,17 @@ APP.post('/api/stream/close', (req, res) => {
     res.statusCode = 400;
     res.send();
   }
-  
+  const user = req.body['user'];
+  if (STREAM_COUNT[user] === undefined) {
+    // This should not be the case but it has to be guarded, otherwise there
+    // would be NaNs in the dictionary and they would never go away unless
+    // an API was restarted or a clenup procedure implemented.
+    console.log("ERROR");
+  }
+  STREAM_COUNT[user] -= 1;
+  if (STREAM_COUNT[user] === 0) {delete STREAM_COUNT[user];}
+  res.send();
+  console.log(STREAM_COUNT)
 });
 
 APP.listen(PORT, () => {
