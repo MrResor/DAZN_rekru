@@ -42,4 +42,4 @@ Endpoint that should be contacted when user closes a tab or stream ends. It requ
 
 ## Testing
 
-For testing purposes a postman workspace has been created (available [here](https://github.com/MrResor/DAZN_rekru.git)). Simple unit tests for both endpoints, as well as stress testing while using both of them at the same time can be performed there.
+For testing purposes a postman workspace has been created (available [here](https://www.postman.com/aviation-geoscientist-80524938/workspace/dazn-rekru)). Simple unit tests for both endpoints, as well as stress testing while using both of them at the same time can be performed there.
