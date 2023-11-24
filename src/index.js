@@ -17,7 +17,6 @@ const STREAM_COUNT = {};
 // setup json middleware for reading body of incoming requests
 APP.use(EXPRESS.json());
 
-
 // post is used mostly because asumptions is made that more data will be
 // transported in body, and it can be safer than get, as well as there
 // is body in response.
@@ -36,6 +35,7 @@ APP.post('/api/stream/open', (req, res) => {
       // if user is not tracked at the moment, add him to the dictionary.
       STREAM_COUNT[user] = 0;
     }
+    res.statusCode = 200;
     // returns false if user has 2 or less streams opened, true otherwise.
     res.send({ "Over_Limit": (STREAM_COUNT[user] > 2) });
     // no need to keep adding after 3, it is better to bound it
@@ -63,7 +63,6 @@ APP.post('/api/stream/close', (req, res) => {
       res.statusCode = 204;
     } else {
       STREAM_COUNT[user] -= 1;
-      typeof a == typeof b && a <= b
       // can be non strict becuase STREAM_COUNT values are numbers for sure
       if (STREAM_COUNT[user] <= 0 || STREAM_COUNT === NaN) {
         delete STREAM_COUNT[user];
